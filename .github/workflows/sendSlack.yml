@@ -1,0 +1,17 @@
+name: Send Slack
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Slack notification
+				env:
+					SLACK_WEBHOOK: ${{ secrets.TODAY_DEVELOP_SLACK_WEBHOOK }}
+        uses: Ilshidur/action-slack@2.0.2
+			  with:
+					args: '보리집사 오개완\n ${{ github.event.head_commit.message }}'
