@@ -5,15 +5,15 @@ on:
     branches:
       - master
 
-# env:
-#   SLACK_WEBHOOK: ${{ secrets.TODAY_DEVELOP_SLACK_WEBHOOK }}
+env:
+  SLACK_WEBHOOK: '${{ secrets.TODAY_DEVELOP_SLACK_WEBHOOK }}'
 
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
       - name: Check env
-        run: echo "webhook = ${{ secrets.TODAY_DEVELOP_SLACK_WEBHOOK }}"
+        run: echo "webhook = ${{ env.SLACK_WEBHOOK }}"
 
 #       - name: Slack notification
 #         env:
