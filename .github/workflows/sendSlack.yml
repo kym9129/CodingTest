@@ -12,12 +12,13 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: Echo github obj
-        run: echo ${{ toJson(github) }}
+#       - name: Echo github obj
+#         run: echo ${{ toJson(github) }}
 
-#       - name: Slack notification
-#         env:
-#           SLACK_WEBHOOK: '${{ secrets.TODAY_DEVELOP_SLACK_WEBHOOK }}'
-#         uses: Ilshidur/action-slack@2.0.2
+      - name: Slack notification
+        env:
+          SLACK_WEBHOOK: '${{ secrets.TODAY_DEVELOP_SLACK_WEBHOOK }}'
+          SLACK_CUSTOM_PAYLOAD: '{ "text" : "${{ github.event.head_commit.timestamp }}\\n보리집사 오개완\\n<${{ github.event.head_commit.url }}|${{ github.event.head_commit.message }}>" }'
+        uses: Ilshidur/action-slack@2.0.2
 #         with:
 #           args: '보리집사 오개완\n ${{ github.event.head_commit.message }}'
