@@ -14,7 +14,7 @@ jobs:
     steps:
       - name: get date
         run: |
-          TIME_STEMP = $(date +"%Y%m%d")
+          env.TIME_STEMP = $(date +"%Y%m%d")
 
       - name: Slack notification
         env:
