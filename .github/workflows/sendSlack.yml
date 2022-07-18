@@ -9,8 +9,15 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: Slack notification
+     # 2군대 슬랙 채널에 보내느라 steps를 2개로 설정
+      - name: Slack notification PF
         env:
           SLACK_WEBHOOK: '${{ secrets.TODAY_DEVELOP_SLACK_WEBHOOK }}'
           SLACK_CUSTOM_PAYLOAD: '{ "text" : "${{ github.event.head_commit.timestamp }}\n보리집사 오개완\n<${{ github.event.head_commit.url }}|${{ github.event.head_commit.message }}>" }'
+        uses: Ilshidur/action-slack@2.0.2
+      
+      - name: Slack notification ESUDA
+        env:
+          SLACK_WEBHOOK: '${{ secrets.ESUDA_SLACK }}'
+          SLACK_CUSTOM_PAYLOAD: '{ "text" : "${{ github.event.head_commit.timestamp }}\n문제풀이 인증\n<${{ github.event.head_commit.url }}|${{ github.event.head_commit.message }}>" }'
         uses: Ilshidur/action-slack@2.0.2
