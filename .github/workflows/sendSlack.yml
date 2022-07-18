@@ -14,8 +14,8 @@ jobs:
     steps:
       - name: edit timestamp
         run: |
-          echo "${$TIME_STAMP:0:10}"
-          TIME_STEMP = "${$TIME_STAMP:0:1}"
+          echo date '+%Y-%m-%d'
+          TIME_STEMP = date '+%Y-%m-%d'
 
       - name: Slack notification
         env:
