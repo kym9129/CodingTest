@@ -6,20 +6,19 @@ on:
       - master
 
 env:
-  TIME_STAMP: '${{ github.event.head_commit.timestamp }}'
+  TIME_STAMP: ''
 
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: edit timestamp
+      - name: get date
         run: |
-          echo date '+%Y-%m-%d'
-          TIME_STEMP = date '+%Y-%m-%d'
+          TIME_STEMP = $(date +"%Y%m%d")
 
       - name: Slack notification
         env:
-#           TIME_STAMP: '${{ github.event.head_commit.timestamp }}'
+#         TIME_STAMP: '${{ github.event.head_commit.timestamp }}'
           SLACK_WEBHOOK: '${{ secrets.TODAY_DEVELOP_SLACK_WEBHOOK }}'
           SLACK_CUSTOM_PAYLOAD: '{ "text" : "${{ env.TIME_STAMP }}\n보리집사 오개완\n<${{ github.event.head_commit.url }}|${{ github.event.head_commit.message }}>" }'
         uses: Ilshidur/action-slack@2.0.2
