@@ -1,7 +1,4 @@
-def solution(record):
-    answer = []
-    
-    # 바꾼 닉네임 기록
+def set_latest_nickname(record):
     nickname_dict = dict()
     for r in record:
         temp_list = r.split()
@@ -10,8 +7,10 @@ def solution(record):
         
         if len(temp_list) == 3:
             nickname_dict[uid] = temp_list[2]
-            
-    # 메시지 표시
+    return nickname_dict
+    
+def set_message(record, nickname_dict):
+    answer = []
     for r in record:
         temp_list = r.split()
         status = temp_list[0]
@@ -26,5 +25,11 @@ def solution(record):
             answer.append(f'{nickname}님이 들어왔습니다.')
         elif status == 'Leave':
             answer.append(f'{nickname}님이 나갔습니다.')
+    
+    return answer
+
+def solution(record):
+    nickname_dict = set_latest_nickname(record)
+    answer = set_message(record, nickname_dict)
     
     return answer
